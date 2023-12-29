@@ -32,7 +32,7 @@ class _RandomWheelMainState extends State<RandomWheelMain> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text('행운의 돌림판', style: TextStyle(fontSize: 30)),
+                Text('행운의 돌림판', style: TextStyle(fontSize: 31)),
                 Text('(2개~8개 설정가능)', style: TextStyle(color: Colors.grey)),
               ],
             ),
