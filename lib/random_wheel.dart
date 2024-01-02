@@ -17,6 +17,7 @@ class RandomWheel extends StatefulWidget {
 class _RandomWheelState extends State<RandomWheel> {
   final _controller = BehaviorSubject<int>();
   String? _result;
+  bool _isWheel = false;
 
   @override
   void dispose() {
@@ -74,8 +75,14 @@ class _RandomWheelState extends State<RandomWheel> {
                     physics: NoPanPhysics(),
                     animateFirst: false,
                     selected: _controller.stream,
+                    onAnimationStart: () {
+                      setState(() {
+                        _isWheel = true;
+                      });
+                    },
                     onAnimationEnd: () {
                       setState(() {
+                        _isWheel = false;
                         _result = widget.items[_controller.value];
                       });
                     },
@@ -101,8 +108,9 @@ class _RandomWheelState extends State<RandomWheel> {
                     ElevatedButton(
                         onPressed: () {
                           setState(() {
-                            _controller
-                                .add(Fortune.randomInt(0, widget.items.length));
+                            if(!_isWheel) {
+                              _controller.add(Fortune.randomInt(0, widget.items.length));
+                            }
                           });
                         },
                         child: const Text("돌리기")),
